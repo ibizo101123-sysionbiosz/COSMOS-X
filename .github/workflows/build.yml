@@ -1,4 +1,4 @@
-name: COSMOS X Windows Build
+name: ASTORIAS Windows Build
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
       - name: Verify VST3 bundle
         shell: pwsh
         run: |
-          $plugin = Join-Path $PWD "build/COSMOSX_artefacts/Release/VST3/COSMOS X.vst3"
+          $plugin = Join-Path $PWD "build/COSMOSX_artefacts/Release/VST3/ASTORIAS.vst3"
           if (!(Test-Path $plugin -PathType Container)) { throw "VST3 bundle missing: $plugin" }
           $module = Get-ChildItem $plugin -Recurse -Filter "*.vst3" | Select-Object -First 1
           if (!$module) { throw "VST3 module binary not found in bundle." }
@@ -44,21 +44,21 @@ jobs:
           if (!(Test-Path $iscc)) { throw "Inno Setup compiler not found: $iscc" }
           & $iscc "installer/COSMOS_X.iss"
           if ($LASTEXITCODE -ne 0) { throw "Inno Setup failed with exit code $LASTEXITCODE" }
-          if (!(Test-Path "dist/COSMOS_X_Installer.exe")) { throw "Installer EXE was not produced." }
+          if (!(Test-Path "dist/ASTORIAS_Installer.exe")) { throw "Installer EXE was not produced." }
 
       - name: Package deliverable ZIP
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path package | Out-Null
-          Copy-Item "dist/COSMOS_X_Installer.exe" "package/"
+          Copy-Item "dist/ASTORIAS_Installer.exe" "package/"
           Copy-Item "README.md" "package/INSTALL_HE.md"
-          Compress-Archive -Path "package/*" -DestinationPath "COSMOS_X_COMPLETE.zip" -Force
-          if (!(Test-Path "COSMOS_X_COMPLETE.zip")) { throw "ZIP package was not produced." }
+          Compress-Archive -Path "package/*" -DestinationPath "ASTORIAS_COMPLETE.zip" -Force
+          if (!(Test-Path "ASTORIAS_COMPLETE.zip")) { throw "ZIP package was not produced." }
 
       - name: Upload Windows deliverable
         uses: actions/upload-artifact@v4
         with:
-          name: COSMOS_X_COMPLETE
-          path: COSMOS_X_COMPLETE.zip
+          name: ASTORIAS_COMPLETE
+          path: ASTORIAS_COMPLETE.zip
           if-no-files-found: error
           retention-days: 30
