@@ -8,12 +8,12 @@ FetchContent_Declare(JUCE
 )
 FetchContent_MakeAvailable(JUCE)
 juce_add_plugin(COSMOSX
- COMPANY_NAME "COSMOS Audio"
- BUNDLE_ID "audio.cosmosx.instrument"
+ COMPANY_NAME "ASTORIAS Audio"
+ BUNDLE_ID "audio.astorias.instrument"
  PLUGIN_MANUFACTURER_CODE Csmx
  PLUGIN_CODE Csx1
  FORMATS VST3
- PRODUCT_NAME "COSMOS X"
+ PRODUCT_NAME "ASTORIAS"
  IS_SYNTH TRUE
  NEEDS_MIDI_INPUT TRUE
  NEEDS_MIDI_OUTPUT FALSE
