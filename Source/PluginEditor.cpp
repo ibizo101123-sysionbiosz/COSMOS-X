@@ -1,6 +1,6 @@
 #include "PluginEditor.h"
 CosmosXAudioProcessorEditor::CosmosXAudioProcessorEditor(CosmosXAudioProcessor&p):AudioProcessorEditor(&p),processor(p){
- setSize(680,420); title.setText("COSMOS X",juce::dontSendNotification);title.setFont(juce::Font(juce::FontOptions(34,juce::Font::bold)));title.setColour(juce::Label::textColourId,juce::Colour(0xffe7f3ff));addAndMakeVisible(title);
+ setSize(680,420); title.setText("ASTORIAS",juce::dontSendNotification);title.setFont(juce::Font(juce::FontOptions(34,juce::Font::bold)));title.setColour(juce::Label::textColourId,juce::Colour(0xffe7f3ff));addAndMakeVisible(title);
  subtitle.setText("POLYPHONIC SYNTHESIZER / VERSION 0.1",juce::dontSendNotification);subtitle.setColour(juce::Label::textColourId,juce::Colour(0xff75cfff));addAndMakeVisible(subtitle);
  auto setup=[this](juce::Slider&s){s.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);s.setTextBoxStyle(juce::Slider::TextBoxBelow,false,76,20);s.setColour(juce::Slider::rotarySliderFillColourId,juce::Colour(0xff39bfff));s.setColour(juce::Slider::textBoxTextColourId,juce::Colour(0xffe7f3ff));s.setColour(juce::Slider::textBoxBackgroundColourId,juce::Colour(0xff101d32));addAndMakeVisible(s);};
  setup(master);setup(cutoff);setup(attack);setup(decay);setup(sustain);setup(release);
