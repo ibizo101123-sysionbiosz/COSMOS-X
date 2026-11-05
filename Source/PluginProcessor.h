@@ -10,12 +10,14 @@ public:
  const juce::String getName() const override{return "ASTORIAS";}
  bool acceptsMidi() const override{return true;} bool producesMidi() const override{return false;}
  bool isMidiEffect() const override{return false;} double getTailLengthSeconds() const override{return 2.0;}
- int getNumPrograms() override{return 1;} int getCurrentProgram() override{return 0;}
- void setCurrentProgram(int) override{} const juce::String getProgramName(int) override{return "Init";}
+ int getNumPrograms() override{return 10;} int getCurrentProgram() override{return 0;}
+ void setCurrentProgram(int) override{} const juce::String getProgramName(int) override{return "ASTORIAS Preset";}
  void changeProgramName(int,const juce::String&) override{}
  void getStateInformation(juce::MemoryBlock&) override; void setStateInformation(const void*,int) override;
  juce::AudioProcessorValueTreeState parameters;
  static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
-private: class CosmosVoice; juce::Synthesiser synth;
+private:
+ class CosmosVoice;
+ juce::Synthesiser synth;
  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(CosmosXAudioProcessor)
 };
