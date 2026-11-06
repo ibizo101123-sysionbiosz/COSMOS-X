@@ -15,6 +15,7 @@ public:
  void changeProgramName(int,const juce::String&) override{}
  void getStateInformation(juce::MemoryBlock&) override; void setStateInformation(const void*,int) override;
  juce::AudioProcessorValueTreeState parameters;
+ juce::MidiKeyboardState keyboardState;
  static juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
 private:
  class CosmosVoice;
