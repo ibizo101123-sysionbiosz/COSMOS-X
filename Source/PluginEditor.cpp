@@ -1,16 +1,26 @@
 #include "PluginEditor.h"
 
 CosmosXAudioProcessorEditor::CosmosXAudioProcessorEditor(CosmosXAudioProcessor& p)
- : AudioProcessorEditor(&p), processor(p) {
- setSize(1120, 760);
+ : AudioProcessorEditor(&p), processor(p), keyboard(p.keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard) {
+ setSize(1120, 900);
  title.setText("ASTORIAS", juce::dontSendNotification);
- title.setFont(juce::Font(juce::FontOptions(42.0f, juce::Font::bold)));
+ title.setFont(juce::Font(juce::FontOptions(48.0f, juce::Font::bold | juce::Font::italic)));
  title.setColour(juce::Label::textColourId, juce::Colour(0xfff2f7ff));
  addAndMakeVisible(title);
  subtitle.setText("SYNTHESIS SYSTEMS  /  GALACTIC SOUND DIVISION", juce::dontSendNotification);
  subtitle.setFont(juce::Font(juce::FontOptions(11.0f)));
  subtitle.setColour(juce::Label::textColourId, juce::Colour(0xff67e8ff));
  addAndMakeVisible(subtitle);
+ keyboard.setAvailableRange(48, 84);
+ keyboard.setKeyWidth(27.0f);
+ keyboard.setScrollButtonsVisible(false);
+ keyboard.setOctaveForMiddleC(4);
+ keyboard.setColour(juce::MidiKeyboardComponent::whiteNoteColourId, juce::Colour(0xffdcecff));
+ keyboard.setColour(juce::MidiKeyboardComponent::blackNoteColourId, juce::Colour(0xff101a31));
+ keyboard.setColour(juce::MidiKeyboardComponent::keyDownOverlayColourId, juce::Colour(0xff37dcff).withAlpha(0.85f));
+ keyboard.setColour(juce::MidiKeyboardComponent::mouseOverKeyOverlayColourId, juce::Colour(0xff9c68ff).withAlpha(0.35f));
+ keyboard.setColour(juce::MidiKeyboardComponent::keySeparatorLineColourId, juce::Colour(0xff263b5d));
+ addAndMakeVisible(keyboard);
 
  auto setup = [this](juce::Slider& s) {
   s.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
@@ -146,12 +156,12 @@ void CosmosXAudioProcessorEditor::paint(juce::Graphics& g) {
   g.setColour(juce::Colour(0xff43dfff).withAlpha(0.12f));
   g.drawLine(x+18,y+29,x+w-18,y+29,1.0f);
  };
- panel(22,132,1076,184); panel(22,329,1076,184); panel(22,526,1076,207);
+ panel(22,132,1076,184); panel(22,420,1076,184); panel(22,618,1076,130);
  g.setColour(juce::Colour(0xff7beaff));
  g.setFont(juce::Font(juce::FontOptions(12.0f,juce::Font::bold)));
  g.drawText("01  /  OSCILLATOR MATRIX",40,139,330,18,juce::Justification::left);
- g.drawText("02  /  FILTER & MOTION ENGINE",40,336,360,18,juce::Justification::left);
- g.drawText("03  /  ENVELOPE & OUTPUT",40,533,330,18,juce::Justification::left);
+ g.drawText("02  /  FILTER & MOTION ENGINE",40,427,360,18,juce::Justification::left);
+ g.drawText("03  /  ENVELOPE & OUTPUT",40,625,330,18,juce::Justification::left);
  g.setColour(juce::Colour(0xffaebed8));
  g.setFont(10.5f);
  g.drawText("WAVEFORM",42,165,150,16,juce::Justification::centred);
@@ -159,23 +169,23 @@ void CosmosXAudioProcessorEditor::paint(juce::Graphics& g) {
  g.drawText("SUB LEVEL",390,165,125,16,juce::Justification::centred);
  g.drawText("DETUNE",565,165,125,16,juce::Justification::centred);
  g.drawText("DRIVE",740,165,125,16,juce::Justification::centred);
- g.drawText("CUTOFF",65,358,135,16,juce::Justification::centred);
- g.drawText("RESONANCE",245,358,135,16,juce::Justification::centred);
- g.drawText("FILTER TYPE",425,366,150,16,juce::Justification::centred);
- g.drawText("LFO RATE",600,358,125,16,juce::Justification::centred);
- g.drawText("LFO DEPTH",765,358,125,16,juce::Justification::centred);
- g.drawText("ATTACK",55,552,120,16,juce::Justification::centred);
- g.drawText("DECAY",220,552,120,16,juce::Justification::centred);
- g.drawText("SUSTAIN",385,552,120,16,juce::Justification::centred);
- g.drawText("RELEASE",550,552,120,16,juce::Justification::centred);
- g.drawText("MASTER",735,552,120,16,juce::Justification::centred);
+ g.drawText("CUTOFF",65,449,135,16,juce::Justification::centred);
+ g.drawText("RESONANCE",245,449,135,16,juce::Justification::centred);
+ g.drawText("FILTER TYPE",425,457,150,16,juce::Justification::centred);
+ g.drawText("LFO RATE",600,449,125,16,juce::Justification::centred);
+ g.drawText("LFO DEPTH",765,449,125,16,juce::Justification::centred);
+ g.drawText("ATTACK",55,638,120,16,juce::Justification::centred);
+ g.drawText("DECAY",220,638,120,16,juce::Justification::centred);
+ g.drawText("SUSTAIN",385,638,120,16,juce::Justification::centred);
+ g.drawText("RELEASE",550,638,120,16,juce::Justification::centred);
+ g.drawText("MASTER",735,638,120,16,juce::Justification::centred);
  g.setColour(juce::Colour(0xff8b9dbb));
  g.setFont(10.0f);
  g.drawText("300 PATCHES  /  10 SOUND WORLDS  /  32 VOICES",720,35,360,20,juce::Justification::centredRight);
  g.setColour(juce::Colour(0xff42dfff).withAlpha(0.7f));
  g.drawRoundedRectangle(585,57,495,55,12.0f,1.0f);
  g.setColour(juce::Colour(0xffa36bff).withAlpha(0.45f));
- g.drawLine(35,716,(float)getWidth()-35,716,1.0f);
+ g.drawLine(35,882,(float)getWidth()-35,882,1.0f);
 }
 void CosmosXAudioProcessorEditor::resized() {
  title.setBounds(30,15,390,54);
@@ -188,14 +198,15 @@ void CosmosXAudioProcessorEditor::resized() {
  subLevel.setBounds(390,185,125,125);
  detune.setBounds(565,185,125,125);
  drive.setBounds(740,185,125,125);
- cutoff.setBounds(65,378,135,125);
- resonance.setBounds(245,378,135,125);
- filterMode.setBounds(425,386,150,30);
- lfoRate.setBounds(600,378,125,125);
- lfoDepth.setBounds(765,378,125,125);
- attack.setBounds(55,570,120,105);
- decay.setBounds(220,570,120,105);
- sustain.setBounds(385,570,120,105);
- release.setBounds(550,570,120,105);
- master.setBounds(735,570,120,105);
+ cutoff.setBounds(65,469,135,125);
+ resonance.setBounds(245,469,135,125);
+ filterMode.setBounds(425,477,150,30);
+ lfoRate.setBounds(600,469,125,125);
+ lfoDepth.setBounds(765,469,125,125);
+ attack.setBounds(55,655,120,85);
+ decay.setBounds(220,655,120,85);
+ sustain.setBounds(385,655,120,85);
+ release.setBounds(550,655,120,85);
+ master.setBounds(735,655,120,85);
+ keyboard.setBounds(35, 765, 1050, 105);
 }
