@@ -129,6 +129,7 @@ bool CosmosXAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) c
 void CosmosXAudioProcessor::processBlock(juce::AudioBuffer<float>& audio, juce::MidiBuffer& midi) {
  juce::ScopedNoDenormals noDenormals;
  audio.clear();
+ keyboardState.processNextMidiBuffer(midi, 0, audio.getNumSamples(), true);
  synth.renderNextBlock(audio, midi, 0, audio.getNumSamples());
 }
 juce::AudioProcessorEditor* CosmosXAudioProcessor::createEditor() { return new CosmosXAudioProcessorEditor(*this); }
