@@ -12,6 +12,7 @@ private:
  juce::Slider master, cutoff, resonance, attack, decay, sustain, release;
  juce::Slider oscMix, subLevel, detune, lfoRate, lfoDepth, drive;
  juce::ComboBox waveform, filterMode, preset;
+ juce::TextButton previousPreset { "<" }, nextPreset { ">" };
  juce::Label title, subtitle;
  using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
  using ComboAttachment = juce::AudioProcessorValueTreeState::ComboBoxAttachment;
