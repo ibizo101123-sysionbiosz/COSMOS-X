@@ -2,7 +2,7 @@
 
 ASTORIAS is a Windows VST3 polyphonic synthesizer for Cubase and other compatible hosts.
 
-This expanded build includes:
+The expanded sound-bank build includes:
 - 32-voice polyphony
 - Two detunable oscillators, plus a sub oscillator
 - Saw, square, sine and triangle waveforms
@@ -10,10 +10,20 @@ This expanded build includes:
 - Resonance and LFO modulation of the filter cutoff
 - Drive/saturation control
 - ADSR amplitude envelope
-- Ten starter patches: Init, Psy Bass, Deep Sub, Trance Lead, Super Saw, Dream Pad, Pluck, Dark Acid, Laser and Warm Keys
-- ASTORIAS-branded interface and Windows installer
+- 150 selectable categorized sound patches in the preset browser:
+  - Psy Bass (15)
+  - Rolling Bass (15)
+  - Sub Bass (15)
+  - Trance Lead (15)
+  - Psy Lead (15)
+  - Supersaw (15)
+  - Pluck (15)
+  - Pads (15)
+  - Arps (15)
+  - FX-style synth tones (15)
+- Dark, gold-accented ASTORIAS interface with an expanded preset selector
 
-The patches are starting points that can be shaped with the front-panel controls. This is an evolving synth build; it does not yet include wavetable import, a full modulation matrix, arpeggiator or a dedicated effects rack.
+Important: these are synth-generated parameter patches, not sampled Nexus libraries. The FX category contains effect-like synth tones; this build does not yet have dedicated delay/reverb effects, wavetable import, a full modulation matrix, or an arpeggiator.
 
 Open **Actions** and wait for the latest **ASTORIAS Windows Build** run to finish successfully. Download the `ASTORIAS_COMPLETE` artifact, extract the ZIP, then run `ASTORIAS_Installer.exe`. The installer places the VST3 in the shared Windows VST3 folder. Restart Cubase and rescan plug-ins.
 
