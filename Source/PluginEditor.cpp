@@ -185,6 +185,18 @@ void CosmosXAudioProcessorEditor::paint(juce::Graphics& g) {
  g.setColour(juce::Colour(0xff42dfff).withAlpha(0.7f));
  g.drawRoundedRectangle(585,57,495,55,12.0f,1.0f);
  g.setColour(juce::Colour(0xffa36bff).withAlpha(0.45f));
+ g.setColour(juce::Colour(0xff061326));
+ g.fillRoundedRectangle(250.0f, 326.0f, 620.0f, 78.0f, 14.0f);
+ g.setColour(juce::Colour(0xff36ddff).withAlpha(0.8f));
+ g.drawRoundedRectangle(250.0f, 326.0f, 620.0f, 78.0f, 14.0f, 1.2f);
+ g.setColour(juce::Colour(0xffa36bff).withAlpha(0.7f));
+ g.drawLine(278.0f, 388.0f, 842.0f, 388.0f, 1.0f);
+ g.setColour(juce::Colour(0xffeffaff));
+ g.setFont(juce::Font(juce::FontOptions(31.0f, juce::Font::bold | juce::Font::italic)));
+ g.drawText("ASTORIAS", 275, 334, 570, 42, juce::Justification::centred);
+ g.setColour(juce::Colour(0xff69eaff));
+ g.setFont(juce::Font(juce::FontOptions(9.5f, juce::Font::bold)));
+ g.drawText("GALACTIC SOUND ENGINE  /  300 PATCHES", 270, 376, 580, 16, juce::Justification::centred);
  g.drawLine(35,882,(float)getWidth()-35,882,1.0f);
 }
 void CosmosXAudioProcessorEditor::resized() {
