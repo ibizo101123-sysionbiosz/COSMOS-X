@@ -9,6 +9,7 @@ public:
  void resized() override;
 private:
  CosmosXAudioProcessor& processor;
+ juce::MidiKeyboardComponent keyboard;
  juce::Slider master, cutoff, resonance, attack, decay, sustain, release;
  juce::Slider oscMix, subLevel, detune, lfoRate, lfoDepth, drive;
  juce::ComboBox waveform, filterMode, preset;
