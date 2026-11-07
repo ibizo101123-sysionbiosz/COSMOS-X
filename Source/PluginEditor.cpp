@@ -12,25 +12,25 @@ juce::String presetLabel(int row) {
 
 CosmosXAudioProcessorEditor::CosmosXAudioProcessorEditor(CosmosXAudioProcessor& p)
  : AudioProcessorEditor(&p), processor(p), keyboard(p.keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard), presetModel(*this) {
- setSize(1160, 820);
+ setSize(1160, 860);
  title.setText("ASTORIAS", juce::dontSendNotification);
  title.setFont(juce::Font(juce::FontOptions(34.0f, juce::Font::bold | juce::Font::italic)));
- title.setColour(juce::Label::textColourId, juce::Colour(0xfff5fbff));
+ title.setColour(juce::Label::textColourId, juce::Colour(0xfff5f5f6));
  addAndMakeVisible(title);
  subtitle.setText("GALACTIC SYNTHESIS SYSTEM", juce::dontSendNotification);
  subtitle.setFont(juce::Font(juce::FontOptions(10.0f, juce::Font::bold)));
- subtitle.setColour(juce::Label::textColourId, juce::Colour(0xff65e8ff));
+ subtitle.setColour(juce::Label::textColourId, juce::Colour(0xffff3b4f));
  addAndMakeVisible(subtitle);
 
  auto setup = [this](juce::Slider& s) {
   s.setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
   s.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 66, 17);
-  s.setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(0xff43dcff));
-  s.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colour(0xff243d5d));
-  s.setColour(juce::Slider::thumbColourId, juce::Colour(0xfff2fbff));
-  s.setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffe9f5ff));
-  s.setColour(juce::Slider::textBoxBackgroundColourId, juce::Colour(0xff0b1728));
-  s.setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(0xff315875));
+  s.setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(0xffc7cbd1));
+  s.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colour(0xff535b66));
+  s.setColour(juce::Slider::thumbColourId, juce::Colour(0xfff4f5f7));
+  s.setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffe7e9ed));
+  s.setColour(juce::Slider::textBoxBackgroundColourId, juce::Colour(0xff101115));
+  s.setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(0xff747b84));
   addAndMakeVisible(s);
  };
  for (auto* s : { &master, &cutoff, &resonance, &attack, &decay, &sustain, &release,
@@ -38,15 +38,15 @@ CosmosXAudioProcessorEditor::CosmosXAudioProcessorEditor(CosmosXAudioProcessor& 
  waveform.addItem("SAW",1); waveform.addItem("SQUARE",2); waveform.addItem("SINE",3); waveform.addItem("TRIANGLE",4);
  filterMode.addItem("LOW PASS",1); filterMode.addItem("HIGH PASS",2); filterMode.addItem("BAND PASS",3);
  for (auto* c : { &waveform, &filterMode }) {
-  c->setColour(juce::ComboBox::backgroundColourId, juce::Colour(0xff0a172a));
-  c->setColour(juce::ComboBox::textColourId, juce::Colour(0xffeafaff));
-  c->setColour(juce::ComboBox::outlineColourId, juce::Colour(0xff367c9a));
+  c->setColour(juce::ComboBox::backgroundColourId, juce::Colour(0xff17191e));
+  c->setColour(juce::ComboBox::textColourId, juce::Colour(0xfff0f1f3));
+  c->setColour(juce::ComboBox::outlineColourId, juce::Colour(0xffaeb4bd));
   addAndMakeVisible(*c);
  }
  auto styleButton = [](juce::TextButton& b) {
-  b.setColour(juce::TextButton::buttonColourId, juce::Colour(0xff102943));
-  b.setColour(juce::TextButton::buttonOnColourId, juce::Colour(0xff17627b));
-  b.setColour(juce::TextButton::textColourOffId, juce::Colour(0xff85efff));
+  b.setColour(juce::TextButton::buttonColourId, juce::Colour(0xffb8bdc5));
+  b.setColour(juce::TextButton::buttonOnColourId, juce::Colour(0xffe0e2e6));
+  b.setColour(juce::TextButton::textColourOffId, juce::Colour(0xff202226));
   b.setColour(juce::TextButton::textColourOnId, juce::Colour(0xffffffff));
  };
  styleButton(previousPreset); styleButton(nextPreset); styleButton(keyboardToggle);
@@ -62,22 +62,22 @@ CosmosXAudioProcessorEditor::CosmosXAudioProcessorEditor(CosmosXAudioProcessor& 
 
  presetBrowser.setModel(&presetModel);
  presetBrowser.setRowHeight(25);
- presetBrowser.setColour(juce::ListBox::backgroundColourId, juce::Colour(0xff08172a));
- presetBrowser.setColour(juce::ListBox::outlineColourId, juce::Colour(0xff28617c));
- presetBrowser.setColour(juce::ListBox::textColourId, juce::Colour(0xffd9f4ff));
+ presetBrowser.setColour(juce::ListBox::backgroundColourId, juce::Colour(0xff101217));
+ presetBrowser.setColour(juce::ListBox::outlineColourId, juce::Colour(0xff8e949d));
+ presetBrowser.setColour(juce::ListBox::textColourId, juce::Colour(0xffe1e3e7));
  presetBrowser.setOutlineThickness(1);
  addAndMakeVisible(presetBrowser);
  presetBrowser.selectRow(0, juce::dontSendNotification);
 
  keyboard.setAvailableRange(48,84);
  keyboard.setKeyWidth(27.0f);
- keyboard.setScrollButtonsVisible(true);
+ keyboard.setScrollButtonsVisible(false);
  keyboard.setOctaveForMiddleC(4);
  keyboard.setColour(juce::MidiKeyboardComponent::whiteNoteColourId, juce::Colour(0xffe6f0fa));
  keyboard.setColour(juce::MidiKeyboardComponent::blackNoteColourId, juce::Colour(0xff111d32));
- keyboard.setColour(juce::MidiKeyboardComponent::keyDownOverlayColourId, juce::Colour(0xff38dfff).withAlpha(0.9f));
- keyboard.setColour(juce::MidiKeyboardComponent::mouseOverKeyOverlayColourId, juce::Colour(0xffa36bff).withAlpha(0.4f));
- keyboard.setColour(juce::MidiKeyboardComponent::keySeparatorLineColourId, juce::Colour(0xff263b5d));
+ keyboard.setColour(juce::MidiKeyboardComponent::keyDownOverlayColourId, juce::Colour(0xffff3048).withAlpha(0.9f));
+ keyboard.setColour(juce::MidiKeyboardComponent::mouseOverKeyOverlayColourId, juce::Colour(0xffff7886).withAlpha(0.4f));
+ keyboard.setColour(juce::MidiKeyboardComponent::keySeparatorLineColourId, juce::Colour(0xff626872));
  addAndMakeVisible(keyboard);
 
  auto& v = processor.parameters;
@@ -101,12 +101,12 @@ CosmosXAudioProcessorEditor::CosmosXAudioProcessorEditor(CosmosXAudioProcessor& 
 
 void CosmosXAudioProcessorEditor::PresetModel::paintListBoxItem(int row, juce::Graphics& g, int width, int height, bool selected) {
  if (selected) {
-  g.setColour(juce::Colour(0xff164a68)); g.fillRect(0,0,width,height);
-  g.setColour(juce::Colour(0xff51e5ff)); g.fillRect(0,2,3,height-4);
+  g.setColour(juce::Colour(0xff57121c)); g.fillRect(0,0,width,height);
+  g.setColour(juce::Colour(0xffff344b)); g.fillRect(0,2,3,height-4);
  } else if (row % 2 == 0) {
   g.setColour(juce::Colour(0xff0b2035)); g.fillRect(0,0,width,height);
  }
- g.setColour(selected ? juce::Colour(0xffffffff) : juce::Colour(0xffb8d7e8));
+ g.setColour(selected ? juce::Colour(0xffffffff) : juce::Colour(0xffd2d5da));
  g.setFont(juce::Font(juce::FontOptions(11.5f, selected ? juce::Font::bold : juce::Font::plain)));
  g.drawText(presetLabel(row), 12, 0, width-20, height, juce::Justification::centredLeft, true);
 }
@@ -155,34 +155,34 @@ void CosmosXAudioProcessorEditor::loadPreset(int index) {
 
 void CosmosXAudioProcessorEditor::paint(juce::Graphics& g) {
  auto b = getLocalBounds().toFloat();
- g.fillAll(juce::Colour(0xff030813));
- juce::ColourGradient bg(juce::Colour(0xff142d4c),0,0,juce::Colour(0xff050914),(float)getWidth(),(float)getHeight(),true);
- bg.addColour(0.48,juce::Colour(0xff11152d)); g.setGradientFill(bg); g.fillRoundedRectangle(b.reduced(6),20);
+ g.fillAll(juce::Colour(0xff08090c));
+ juce::ColourGradient bg(juce::Colour(0xff241015),0,0,juce::Colour(0xff09090d),(float)getWidth(),(float)getHeight(),true);
+ bg.addColour(0.48,juce::Colour(0xff180d12)); g.setGradientFill(bg); g.fillRoundedRectangle(b.reduced(6),20);
  for (int i=0;i<105;++i) {
   float x=(float)((i*173+37)%(getWidth()-20))+10, y=(float)((i*97+19)%(getHeight()-15))+5;
-  g.setColour(juce::Colour(0xff8deaff).withAlpha(i%5==0?0.55f:0.16f));
+  g.setColour(juce::Colour(0xffff6878).withAlpha(i%5==0?0.55f:0.16f));
   g.fillEllipse(x,y,(i%9==0)?2.8f:1.3f,(i%9==0)?2.8f:1.3f);
  }
  // Nebula clouds and orbital arcs
- g.setColour(juce::Colour(0xff7046b5).withAlpha(0.12f)); g.fillEllipse(360,120,430,390);
- g.setColour(juce::Colour(0xff37dfff).withAlpha(0.13f)); g.drawEllipse(325,112,500,410,2.0f);
- g.setColour(juce::Colour(0xff36dfff).withAlpha(0.65f)); g.drawRoundedRectangle(b.reduced(7),18,1.2f);
+ g.setColour(juce::Colour(0xff9d1e32).withAlpha(0.12f)); g.fillEllipse(360,120,430,390);
+ g.setColour(juce::Colour(0xffff263f).withAlpha(0.13f)); g.drawEllipse(325,112,500,410,2.0f);
+ g.setColour(juce::Colour(0xffff3048).withAlpha(0.65f)); g.drawRoundedRectangle(b.reduced(7),18,1.2f);
  auto panel=[&g](float x,float y,float w,float h) {
   g.setColour(juce::Colour(0xff07182b).withAlpha(0.96f)); g.fillRoundedRectangle(x,y,w,h,13);
-  g.setColour(juce::Colour(0xff347e9d).withAlpha(0.8f)); g.drawRoundedRectangle(x,y,w,h,13,1.0f);
+  g.setColour(juce::Colour(0xff87313d).withAlpha(0.8f)); g.drawRoundedRectangle(x,y,w,h,13,1.0f);
  };
  panel(20,96,270,520); panel(300,96,555,520); panel(865,96,275,520);
  // ASTORIAS emblem / small spacecraft silhouette
  juce::Path ship;
  ship.startNewSubPath(1010,26); ship.lineTo(1032,47); ship.lineTo(1022,45); ship.lineTo(1010,56);
  ship.lineTo(998,45); ship.lineTo(988,47); ship.closeSubPath();
- g.setColour(juce::Colour(0xff8b70ff).withAlpha(0.9f)); g.fillPath(ship);
- g.setColour(juce::Colour(0xff4ce5ff)); g.drawLine(1004,55,1010,64,2.0f); g.drawLine(1016,55,1010,64,2.0f);
- g.setColour(juce::Colour(0xff70eaff)); g.setFont(juce::Font(juce::FontOptions(11.0f,juce::Font::bold)));
+ g.setColour(juce::Colour(0xffff3b50).withAlpha(0.9f)); g.fillPath(ship);
+ g.setColour(juce::Colour(0xffff5668)); g.drawLine(1004,55,1010,64,2.0f); g.drawLine(1016,55,1010,64,2.0f);
+ g.setColour(juce::Colour(0xffff5264)); g.setFont(juce::Font(juce::FontOptions(11.0f,juce::Font::bold)));
  g.drawText("OSCILLATOR BAY",36,110,220,18,juce::Justification::centredLeft);
  g.drawText("ASTORIAS PATCH NAVIGATOR",320,110,360,18,juce::Justification::centredLeft);
  g.drawText("MODULATION / FILTER",885,110,220,18,juce::Justification::centredLeft);
- g.setColour(juce::Colour(0xff9eb8d2)); g.setFont(juce::Font(juce::FontOptions(9.5f,juce::Font::bold)));
+ g.setColour(juce::Colour(0xffc1c4ca)); g.setFont(juce::Font(juce::FontOptions(9.5f,juce::Font::bold)));
  g.drawText("WAVEFORM",34,142,100,15,juce::Justification::centred);
  g.drawText("OSC MIX",35,225,105,15,juce::Justification::centred);
  g.drawText("SUB LEVEL",165,225,105,15,juce::Justification::centred);
@@ -196,8 +196,8 @@ void CosmosXAudioProcessorEditor::paint(juce::Graphics& g) {
  g.drawText("DECAY",965,365,75,15,juce::Justification::centred);
  g.drawText("SUSTAIN",875,475,85,15,juce::Justification::centred);
  g.drawText("RELEASE",975,475,85,15,juce::Justification::centred);
- g.setColour(juce::Colour(0xff53e5ff)); g.setFont(juce::Font(juce::FontOptions(24.0f,juce::Font::bold | juce::Font::italic)));
- g.setColour(juce::Colour(0xffa5bfd8)); g.setFont(juce::Font(juce::FontOptions(9.5f)));
+ g.setColour(juce::Colour(0xffff3048)); g.setFont(juce::Font(juce::FontOptions(24.0f,juce::Font::bold | juce::Font::italic)));
+ g.setColour(juce::Colour(0xffd2d5da)); g.setFont(juce::Font(juce::FontOptions(9.5f)));
  g.drawText("GALACTIC SYNTHESIS SYSTEM   /   32 VOICES",36,57,400,18,juce::Justification::centredLeft);
  g.drawText("MASTER OUTPUT",165,485,105,15,juce::Justification::centred);
 }
@@ -216,7 +216,7 @@ void CosmosXAudioProcessorEditor::resized() {
  master.setBounds(165,500,105,105);
  presetBrowser.setBounds(320,145,515,405);
  keyboard.setVisible(keyboardVisible);
- keyboard.setBounds(24,650,1112,125);
+ keyboard.setBounds(24,710,1112,125);
  if (keyboardVisible) keyboard.setBounds(24,650,1112,125);
- else keyboard.setBounds(24,650,1112,1);
+ else keyboard.setBounds(24,710,1112,1);
 }
