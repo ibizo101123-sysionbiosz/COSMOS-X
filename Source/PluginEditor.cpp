@@ -120,6 +120,7 @@ void CosmosXAudioProcessorEditor::setPreset(int index) {
 }
 void CosmosXAudioProcessorEditor::loadPreset(int index) {
  if (index < 1 || index > 300) return;
+ selectedPreset = index;
  const int category = (index - 1) / 30;
  const int v = (index - 1) % 30;
  const float t = (float)v / 29.0f;
@@ -290,10 +291,9 @@ void CosmosXAudioProcessorEditor::paint(juce::Graphics& g) {
  g.drawText("SUSTAIN",875,475,85,15,juce::Justification::centred);
  g.drawText("RELEASE",975,475,85,15,juce::Justification::centred);
  g.setColour(juce::Colour(0xff53e5ff)); g.setFont(juce::Font(juce::FontOptions(24.0f,juce::Font::bold | juce::Font::italic)));
- g.drawText("ASTORIAS",35,15,330,42,juce::Justification::centredLeft);
  g.setColour(juce::Colour(0xffa5bfd8)); g.setFont(juce::Font(juce::FontOptions(9.5f)));
  g.drawText("GALACTIC SYNTHESIS SYSTEM   /   32 VOICES",36,57,400,18,juce::Justification::centredLeft);
- g.drawText("MASTER OUTPUT",875,575,115,15,juce::Justification::centred);
+ g.drawText("MASTER OUTPUT",165,485,105,15,juce::Justification::centred);
 }
 void CosmosXAudioProcessorEditor::resized() {
  title.setBounds(30,12,330,44); subtitle.setBounds(36,54,400,20);
@@ -306,8 +306,8 @@ void CosmosXAudioProcessorEditor::resized() {
  lfoRate.setBounds(870,274,105,92); lfoDepth.setBounds(995,274,105,92);
  attack.setBounds(870,384,90,92); decay.setBounds(980,384,90,92);
  sustain.setBounds(870,494,90,92); release.setBounds(980,494,90,92);
- filterMode.setBounds(890,535,190,26);
- master.setBounds(1000,570,100,42);
+ filterMode.setBounds(890,265,190,26);
+ master.setBounds(165,500,105,105);
  presetBrowser.setBounds(320,145,515,405);
  keyboard.setVisible(keyboardVisible);
  keyboard.setBounds(24,650,1112,125);
