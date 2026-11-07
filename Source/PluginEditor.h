@@ -23,7 +23,7 @@ private:
  juce::ComboBox waveform, filterMode;
  juce::TextButton previousPreset { "<" }, nextPreset { ">" }, keyboardToggle { "HIDE KEYBOARD" };
  juce::ListBox presetBrowser;
- PresetModel presetModel { *this };
+ PresetModel presetModel;
  juce::Label title, subtitle;
  bool keyboardVisible = true;
  int selectedPreset = 1;
