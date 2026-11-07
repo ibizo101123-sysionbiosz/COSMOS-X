@@ -217,6 +217,6 @@ void CosmosXAudioProcessorEditor::resized() {
  presetBrowser.setBounds(320,145,515,405);
  keyboard.setVisible(keyboardVisible);
  keyboard.setBounds(24,710,1112,125);
- if (keyboardVisible) keyboard.setBounds(24,650,1112,125);
+ if (keyboardVisible) keyboard.setBounds(24,710,1112,125);
  else keyboard.setBounds(24,710,1112,1);
 }
