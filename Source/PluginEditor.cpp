@@ -11,7 +11,7 @@ juce::String presetLabel(int row) {
 }
 
 CosmosXAudioProcessorEditor::CosmosXAudioProcessorEditor(CosmosXAudioProcessor& p)
- : AudioProcessorEditor(&p), processor(p), keyboard(p.keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard) {
+ : AudioProcessorEditor(&p), processor(p), keyboard(p.keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard), presetModel(*this) {
  setSize(1160, 820);
  title.setText("ASTORIAS", juce::dontSendNotification);
  title.setFont(juce::Font(juce::FontOptions(34.0f, juce::Font::bold | juce::Font::italic)));
